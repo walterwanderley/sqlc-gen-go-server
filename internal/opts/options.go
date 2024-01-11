@@ -43,6 +43,12 @@ type Options struct {
 	OmitSqlcVersion             bool              `json:"omit_sqlc_version,omitempty" yaml:"omit_sqlc_version"`
 	OmitUnusedStructs           bool              `json:"omit_unused_structs,omitempty" yaml:"omit_unused_structs"`
 	BuildTags                   string            `json:"build_tags,omitempty" yaml:"build_tags"`
+	Module                      string            `json:"module,omitempty" yaml:"module"`
+	Tracing                     bool              `json:"tracing,omitempty" yaml:"tracing"`
+	LiteFS                      bool              `json:"litefs,omitempty" yaml:"litefs"`
+	MigrationPath               string            `json:"migration_path,omitempty" yaml:"migration_path"`
+	SkipGoMod                   bool              `json:"skip_go_mod,omitempty" yaml:"skip_go_mod"`
+	ServerType                  string            `json:"server_type,omitempty" yaml:"server_type"`
 }
 
 type GlobalOptions struct {

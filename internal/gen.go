@@ -324,6 +324,29 @@ func generate(req *plugin.GenerateRequest, options *opts.Options, enums []Enum, 
 		})
 	}
 
+	if options.ServerType == "" {
+		options.ServerType = "grpc"
+	}
+	var (
+		err         error
+		serverFiles []*plugin.File
+	)
+	switch options.ServerType {
+	case "connect":
+		serverFiles, err = connectFiles(req, options, enums, structs, queries)
+		if err != nil {
+			return nil, err
+		}
+	case "grpc":
+		serverFiles, err = grpcFiles(req, options, enums, structs, queries)
+		if err != nil {
+			return nil, err
+		}
+	default:
+		return nil, fmt.Errorf("invalid server_type %q. Choose 'connect' or 'grpc'", options.ServerType)
+	}
+	resp.Files = append(resp.Files, serverFiles...)
+
 	return &resp, nil
 }
 
