@@ -2,6 +2,40 @@
 
 [Sqlc plugin](https://sqlc.dev) to generate [gRPC](https://grpc.io/) or [Connect](https://connectrpc.com/) server from SQL.
 
+## Post-process
+
+After execute `sqlc generate` you need to organize imorts, compile protocol buffer and fix go.mod.
+
+1. Install the required tools:
+
+```sh
+go install golang.org/x/tools/cmd/goimports@latest
+go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest
+go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+go install github.com/bufbuild/buf/cmd/buf@latest
+```
+
+2. Organize imports:
+
+```sh
+goimports -w *.go **/*.go **/**/*.go
+```
+
+3. Compile the generated protocol buffer:
+
+```sh
+buf mod update proto
+buf generate
+```
+
+4. Fix go.mod:
+
+```sh
+go mod tidy
+```
+
 ## Building from source
 
 Assuming you have the Go toolchain set up, from the project root you can simply `make all`.
@@ -57,31 +91,4 @@ sql:
       litestream: false # If true, enable support for continuous backup sqlite to S3 powered by embeded Litestream
       migration_path: "" # If you want to execute database migrations on startup
       skip_go_mod: false # If true, skip the generation of the go.mod
-```
-
-## Post-process
-
-After execute `sqlc generate` you need to compile protocol buffer and fix go.mod.
-
-1. Install the required tools:
-
-```sh
-go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest
-go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
-go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
-go install github.com/bufbuild/buf/cmd/buf@latest
-```
-
-2. Compile the generated protocol buffer:
-
-```sh
-buf mod update proto
-buf generate
-```
-
-3. Fix go.mod:
-
-```sh
-go mod tidy
 ```

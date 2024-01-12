@@ -1,8 +1,15 @@
 package golang
 
 import (
+	"bytes"
+	"fmt"
+	"go/format"
+	"io"
+	"io/fs"
+	"log"
 	"sort"
 	"strings"
+	"text/template"
 
 	"github.com/sqlc-dev/plugin-sdk-go/plugin"
 	"github.com/sqlc-dev/sqlc-gen-go/internal/opts"
@@ -177,4 +184,39 @@ func toServerDefinition(req *plugin.GenerateRequest, options *opts.Options, enum
 	})
 
 	return &def
+}
+
+func execServerTemplate(fs fs.FS, funcs template.FuncMap, name string, data any, goSource bool) ([]byte, error) {
+	var b bytes.Buffer
+
+	f, err := fs.Open(name)
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
+	tmpl, err := io.ReadAll(f)
+	if err != nil {
+		return nil, err
+	}
+
+	t, err := template.New(name).Funcs(funcs).Parse(string(tmpl))
+	if err != nil {
+		return nil, err
+	}
+	err = t.Execute(&b, data)
+	if err != nil {
+		return nil, fmt.Errorf("execute template error: %w", err)
+	}
+
+	var src []byte
+	if goSource {
+		src, err = format.Source(b.Bytes())
+		if err != nil {
+			log.Println(b.String())
+			return nil, fmt.Errorf("format source error: %w", err)
+		}
+	} else {
+		src = b.Bytes()
+	}
+	return src, nil
 }
