@@ -47,7 +47,7 @@ func grpcFiles(req *plugin.GenerateRequest, options *opts.Options, enums []Enum,
 		}
 		log.Println(path, "...")
 		if strings.HasSuffix(newPath, "service.proto") {
-			protoContent, err := execServerTemplate(grpctemplates.Files, grpctemplates.Funcs, path, &pkg, false)
+			protoContent, err := execServerTemplate(grpctemplates.Files, grpctemplates.Funcs, path, pkg, false)
 			if err != nil {
 				return err
 			}
@@ -60,7 +60,7 @@ func grpcFiles(req *plugin.GenerateRequest, options *opts.Options, enums []Enum,
 		}
 
 		if strings.HasSuffix(newPath, "adapters.go") || strings.HasSuffix(newPath, "service.go") || strings.HasSuffix(newPath, "service.factory.go") {
-			content, err := execServerTemplate(grpctemplates.Files, grpctemplates.Funcs, path, &pkg, true)
+			content, err := execServerTemplate(grpctemplates.Files, grpctemplates.Funcs, path, pkg, true)
 			if err != nil {
 				return err
 			}
@@ -87,7 +87,7 @@ func grpcFiles(req *plugin.GenerateRequest, options *opts.Options, enums []Enum,
 			return nil
 		}
 
-		content, err := execServerTemplate(grpctemplates.Files, grpctemplates.Funcs, path, &def, strings.HasSuffix(newPath, ".go"))
+		content, err := execServerTemplate(grpctemplates.Files, grpctemplates.Funcs, path, def, strings.HasSuffix(newPath, ".go"))
 		if err != nil {
 			return err
 		}

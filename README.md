@@ -76,8 +76,7 @@ go install github.com/bufbuild/buf/cmd/buf@latest
 2. Compile the generated protocol buffer:
 
 ```sh
-cd proto && buf mod update
-cd ..
+buf mod update proto
 buf generate
 ```
 

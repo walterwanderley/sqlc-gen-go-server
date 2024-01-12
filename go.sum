@@ -16,8 +16,8 @@ github.com/kisielk/errcheck v1.5.0/go.mod h1:pFxgyoBC7bSaBwPgfKdkLd5X25qrDl4LWUI
 github.com/kisielk/gotool v1.0.0/go.mod h1:XhKaO+MFFWcvkIS/tQcRk01m1F5IRFswLeQ+oQHNcck=
 github.com/sqlc-dev/plugin-sdk-go v1.23.0 h1:iSeJhnXPlbDXlbzUEebw/DxsGzE9rdDJArl8Hvt0RMM=
 github.com/sqlc-dev/plugin-sdk-go v1.23.0/go.mod h1:I1r4THOfyETD+LI2gogN2LX8wCjwUZrgy/NU4In3llA=
-github.com/walterwanderley/sqlc-connect v0.2.0 h1:eQ7xLe1cGP2b8Ql+rQYGn/8sC43uikxhd1JAf/Y/yQw=
-github.com/walterwanderley/sqlc-connect v0.2.0/go.mod h1:qId0WvvjEq+hkjn03ma1Q9jXmdBFx3i3CHEvG2IKzC0=
+github.com/walterwanderley/sqlc-connect v0.2.3 h1:W1+lOKgSg5TehPceELAilyR0Wf2k2DCiAbqrp7anN18=
+github.com/walterwanderley/sqlc-connect v0.2.3/go.mod h1:qId0WvvjEq+hkjn03ma1Q9jXmdBFx3i3CHEvG2IKzC0=
 github.com/walterwanderley/sqlc-grpc v0.18.1 h1:LXTlCBaleMr46iY528C5YuhRiQGXnmnkhv5mXNqlpzk=
 github.com/walterwanderley/sqlc-grpc v0.18.1/go.mod h1:bfMjDJUNyUkk3+OM/we8OKDYPVodms+ekOgHvV2hXFY=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=

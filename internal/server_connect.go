@@ -82,7 +82,7 @@ func connectFiles(req *plugin.GenerateRequest, options *opts.Options, enums []En
 			return nil
 		}
 
-		content, err := execServerTemplate(connecttemplates.Files, connecttemplates.Funcs, path, &def, strings.HasSuffix(newPath, ".go"))
+		content, err := execServerTemplate(connecttemplates.Files, connecttemplates.Funcs, path, def, strings.HasSuffix(newPath, ".go"))
 		if err != nil {
 			return err
 		}
