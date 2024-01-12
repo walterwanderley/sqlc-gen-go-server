@@ -46,6 +46,7 @@ type Options struct {
 	Module                      string            `json:"module,omitempty" yaml:"module"`
 	Tracing                     bool              `json:"tracing,omitempty" yaml:"tracing"`
 	LiteFS                      bool              `json:"litefs,omitempty" yaml:"litefs"`
+	Litestream                  bool              `json:"litestream,omitempty" yaml:"litestream"`
 	MigrationPath               string            `json:"migration_path,omitempty" yaml:"migration_path"`
 	SkipGoMod                   bool              `json:"skip_go_mod,omitempty" yaml:"skip_go_mod"`
 	ServerType                  string            `json:"server_type,omitempty" yaml:"server_type"`

@@ -50,12 +50,13 @@ sql:
     options:
       package: "db"
       emit_json_tags: true
-      server_type: "grpc" # the server type: grpc or connect
-      module: "my-module" # the module name for the generated go.mod
-      tracing: false # if true, enable distributed tracing with open telemetry
-      litefs: false # if true, enable support to distributed sqlite
-      migration_path: "" # if you want to execute database migrations on startup
-      skip_go_mod: false # if true, skip the generation of the go.mod
+      server_type: "grpc" # The server type: grpc or connect.
+      module: "my-module" # The module name for the generated go.mod.
+      tracing: false # If true, enable distributed tracing with open telemetry.
+      litefs: false # If true, enable support for distributed SQLite powered by embedded LiteFS.
+      litestream: false # If true, enable support for continuous backup sqlite to S3 powered by embeded Litestream
+      migration_path: "" # If you want to execute database migrations on startup
+      skip_go_mod: false # If true, skip the generation of the go.mod
 ```
 
 ## Post-process
