@@ -26,6 +26,8 @@ sql:
 
 ## Post-process
 
+>**Note:** If you’d rather not execute these steps, you might want to use [sqlc-grpc](https://github.com/walterwanderley/sqlc-grpc) or [sqlc-connect](https://github.com/walterwanderley/sqlc-connect) instead of this plugin.
+
 After execute `sqlc generate` you need to organize imports, compile protocol buffer and fix go.mod.
 
 1. Install the required tools:
