@@ -50,6 +50,7 @@ type Options struct {
 	MigrationPath               string            `json:"migration_path,omitempty" yaml:"migration_path"`
 	SkipGoMod                   bool              `json:"skip_go_mod,omitempty" yaml:"skip_go_mod"`
 	ServerType                  string            `json:"server_type,omitempty" yaml:"server_type"`
+	Append                      bool              `json:"append,omitempty" yaml:"append"`
 }
 
 type GlobalOptions struct {

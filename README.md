@@ -21,11 +21,12 @@ sql:
     options:
       package: db
       sql_package: pgx/v5
+      server_type: grpc
 ```
 
 ## Post-process
 
-After execute `sqlc generate` you need to organize imorts, compile protocol buffer and fix go.mod.
+After execute `sqlc generate` you need to organize imports, compile protocol buffer and fix go.mod.
 
 1. Install the required tools:
 
@@ -58,6 +59,8 @@ buf generate
 go mod tidy
 ```
 
+5. If you define more than one package, you’ll need to add them to the generated **registry.go** file. 
+
 ## Plugin options
 
 You can use all of the [Golang plugin's options](https://docs.sqlc.dev/en/latest/reference/config.html#go) as well as the options described below.
@@ -77,15 +80,14 @@ sql:
   - plugin: go-server
     out: "db"
     options:
-      package: "db"
-      emit_json_tags: true
-      server_type: "grpc" # The server type: grpc or connect.
+      server_type: "grpc" # The server type: grpc or connect.      
       module: "my-module" # The module name for the generated go.mod.
       tracing: false # If true, enable distributed tracing with open telemetry.
       litefs: false # If true, enable support for distributed SQLite powered by embedded LiteFS.
-      litestream: false # If true, enable support for continuous backup sqlite to S3 powered by embeded Litestream
-      migration_path: "" # If you want to execute database migrations on startup
-      skip_go_mod: false # If true, skip the generation of the go.mod
+      litestream: false # If true, enable support for continuous backup sqlite to S3 powered by embeded Litestream.
+      migration_path: "" # If you want to execute database migrations on startup.
+      skip_go_mod: false # If true, skip the generation of the go.mod.
+      append: false # If true, enable the append mode and do not generate the editable files.
 ```
 
 ## Building from source
