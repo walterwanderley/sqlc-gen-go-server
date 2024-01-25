@@ -44,12 +44,15 @@ type Options struct {
 	OmitUnusedStructs           bool              `json:"omit_unused_structs,omitempty" yaml:"omit_unused_structs"`
 	BuildTags                   string            `json:"build_tags,omitempty" yaml:"build_tags"`
 	Module                      string            `json:"module,omitempty" yaml:"module"`
+	Metric                      bool              `json:"metric,omitempty" yaml:"metric"`
 	Tracing                     bool              `json:"tracing,omitempty" yaml:"tracing"`
 	LiteFS                      bool              `json:"litefs,omitempty" yaml:"litefs"`
 	Litestream                  bool              `json:"litestream,omitempty" yaml:"litestream"`
 	MigrationPath               string            `json:"migration_path,omitempty" yaml:"migration_path"`
+	MigrationLib                string            `json:"migration_lib,omitempty" yaml:"migration_lib"`
 	SkipGoMod                   bool              `json:"skip_go_mod,omitempty" yaml:"skip_go_mod"`
 	ServerType                  string            `json:"server_type,omitempty" yaml:"server_type"`
+	SkipQueries                 string            `json:"skip_queries,omitempty" yaml:"skip_queries"`
 	Append                      bool              `json:"append,omitempty" yaml:"append"`
 }
 

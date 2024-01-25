@@ -8,6 +8,7 @@ import (
 	"io/fs"
 	"log"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strings"
 	"text/template"
@@ -95,6 +96,10 @@ func serverFiles(req *plugin.GenerateRequest, options *opts.Options, enums []Enu
 			return nil
 		}
 
+		if strings.HasSuffix(newPath, "metric.go") && !def.Metric {
+			return nil
+		}
+
 		if strings.HasSuffix(newPath, "tracing.go") && !def.DistributedTracing {
 			return nil
 		}
@@ -144,6 +149,10 @@ func toServerDefinition(req *plugin.GenerateRequest, options *opts.Options, enum
 	if sqlPackage == "" {
 		sqlPackage = "database/sql"
 	}
+	migrationLib := options.MigrationLib
+	if migrationLib == "" {
+		migrationLib = "goose"
+	}
 	messages := make(map[string]*metadata.Message)
 	for _, st := range structs {
 		msg := metadata.Message{
@@ -157,9 +166,27 @@ func toServerDefinition(req *plugin.GenerateRequest, options *opts.Options, enum
 		}
 		messages[st.Name] = &msg
 	}
+	queriesToSkip := make([]*regexp.Regexp, 0)
+	for _, queryName := range strings.Split(options.SkipQueries, ",") {
+		s := strings.TrimSpace(queryName)
+		if s == "" {
+			continue
+		}
+		queriesToSkip = append(queriesToSkip, regexp.MustCompile(s))
+	}
 	services := make([]*metadata.Service, 0)
 	var hasExecResult bool
 	for _, query := range queries {
+		var skip bool
+		for _, re := range queriesToSkip {
+			if re.MatchString(query.MethodName) {
+				skip = true
+				break
+			}
+		}
+		if skip {
+			continue
+		}
 		inputNames := make([]string, 0)
 		inputTypes := make([]string, 0)
 		if query.Arg.Struct != nil {
@@ -244,6 +271,26 @@ func toServerDefinition(req *plugin.GenerateRequest, options *opts.Options, enum
 		} else if query.Cmd == ":execresult" {
 			out.WriteString("sql.Result")
 		}
+		httpSpecs := make([]metadata.HttpSpec, 0)
+		for _, doc := range query.Comments {
+			doc = strings.TrimSpace(doc)
+			if strings.HasPrefix(doc, "http: ") {
+				opts := strings.Split(strings.TrimPrefix(doc, "http: "), " ")
+				if len(opts) != 2 {
+					continue
+				}
+				httpMethod, httpPath := strings.ToUpper(opts[0]), opts[1]
+				switch httpMethod {
+				case "POST", "GET", "PUT", "DELETE", "PATCH":
+				default:
+					continue
+				}
+				httpSpecs = append(httpSpecs, metadata.HttpSpec{
+					Method: httpMethod,
+					Path:   httpPath,
+				})
+			}
+		}
 		services = append(services, &metadata.Service{
 			Name:       query.MethodName,
 			Sql:        query.SQL,
@@ -251,6 +298,7 @@ func toServerDefinition(req *plugin.GenerateRequest, options *opts.Options, enum
 			Output:     out.String(),
 			InputNames: inputNames,
 			InputTypes: inputTypes,
+			HttpSpecs:  httpSpecs,
 		})
 	}
 	sort.SliceStable(services, func(i, j int) bool {
@@ -279,7 +327,9 @@ func toServerDefinition(req *plugin.GenerateRequest, options *opts.Options, enum
 		LiteFS:             options.LiteFS,
 		Litestream:         options.Litestream,
 		DistributedTracing: options.Tracing,
+		Metric:             options.Metric,
 		MigrationPath:      options.MigrationPath,
+		MigrationLib:       migrationLib,
 	}
 
 	outAdapters := make(map[string]struct{})

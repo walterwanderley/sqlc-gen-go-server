@@ -7,8 +7,8 @@ require (
 	github.com/google/go-cmp v0.6.0
 	github.com/jinzhu/inflection v1.0.0
 	github.com/sqlc-dev/plugin-sdk-go v1.23.0
-	github.com/walterwanderley/sqlc-connect v0.2.5
-	github.com/walterwanderley/sqlc-grpc v0.18.3
+	github.com/walterwanderley/sqlc-connect v0.3.0
+	github.com/walterwanderley/sqlc-grpc v0.19.0
 )
 
 require (
