@@ -247,14 +247,14 @@ func toServerDefinition(req *plugin.GenerateRequest, options *opts.Options, enum
 				typ.WriteString("*")
 			}
 			typ.WriteString(query.Ret.Type())
-			retField.Type = converter.ToProtoType(typ.String())
+			retField.Type = typ.String()
 
 			retFields = append(retFields, &retField)
 		} else if query.Cmd == ":execresult" {
 			hasExecResult = true
 			retFields = append(retFields, &metadata.Field{
 				Name: "value",
-				Type: converter.ToProtoType("sql.Result"),
+				Type: "sql.Result",
 			})
 		}
 		retMessage := metadata.Message{

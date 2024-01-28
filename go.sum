@@ -1,5 +1,5 @@
-github.com/emicklei/proto v1.13.0 h1:YtC/om6EdkJ0me1JPw4h2g10k+ELITjYFb7tpzm8i8k=
-github.com/emicklei/proto v1.13.0/go.mod h1:rn1FgRS/FANiZdD2djyH7TMA9jdRDcYQ9IEN9yvjX0A=
+github.com/emicklei/proto v1.13.2 h1:z/etSFO3uyXeuEsVPzfl56WNgzcvIr42aQazXaQmFZY=
+github.com/emicklei/proto v1.13.2/go.mod h1:rn1FgRS/FANiZdD2djyH7TMA9jdRDcYQ9IEN9yvjX0A=
 github.com/fatih/structtag v1.2.0 h1:/OdNE99OxoI/PqaW/SuSK9uxxT3f/tcSZgon/ssNSx4=
 github.com/fatih/structtag v1.2.0/go.mod h1:mBJUNpUnHmRKrKlQQlmCrh5PuhftFbNv8Ys4/aAZl94=
 github.com/gogo/protobuf v1.3.2 h1:Ov1cvc58UF3b5XjBnZv7+opcTcQFZebYjWzi34vdm4Q=
@@ -18,8 +18,8 @@ github.com/sqlc-dev/plugin-sdk-go v1.23.0 h1:iSeJhnXPlbDXlbzUEebw/DxsGzE9rdDJArl
 github.com/sqlc-dev/plugin-sdk-go v1.23.0/go.mod h1:I1r4THOfyETD+LI2gogN2LX8wCjwUZrgy/NU4In3llA=
 github.com/walterwanderley/sqlc-connect v0.3.0 h1:RlNcWrp5s+ephiCzPCC/v+B7HA7yvDDeEwodB9yLtWQ=
 github.com/walterwanderley/sqlc-connect v0.3.0/go.mod h1:dTMXf4h8Lw9DJVbLTkSbiHAA5o7kZAq5pESPZLvRZ9U=
-github.com/walterwanderley/sqlc-grpc v0.19.0 h1:byrFXyUV1nqpJUzjbKKuOEZsfa4r6eT67BAWLYkc9mU=
-github.com/walterwanderley/sqlc-grpc v0.19.0/go.mod h1:bfMjDJUNyUkk3+OM/we8OKDYPVodms+ekOgHvV2hXFY=
+github.com/walterwanderley/sqlc-grpc v0.19.2 h1:ytEGN1QQ3y/FrCe1CYvqiNnCJhua7c/QJw07hJuaFs8=
+github.com/walterwanderley/sqlc-grpc v0.19.2/go.mod h1:bfMjDJUNyUkk3+OM/we8OKDYPVodms+ekOgHvV2hXFY=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=

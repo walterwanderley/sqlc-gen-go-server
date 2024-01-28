@@ -8,11 +8,11 @@ require (
 	github.com/jinzhu/inflection v1.0.0
 	github.com/sqlc-dev/plugin-sdk-go v1.23.0
 	github.com/walterwanderley/sqlc-connect v0.3.0
-	github.com/walterwanderley/sqlc-grpc v0.19.0
+	github.com/walterwanderley/sqlc-grpc v0.19.2
 )
 
 require (
-	github.com/emicklei/proto v1.13.0 // indirect
+	github.com/emicklei/proto v1.13.2 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	golang.org/x/net v0.20.0 // indirect
