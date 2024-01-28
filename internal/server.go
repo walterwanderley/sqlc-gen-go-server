@@ -43,7 +43,7 @@ func serverFiles(req *plugin.GenerateRequest, options *opts.Options, enums []Enu
 	}
 	pkg := def.Packages[0]
 	depth := make([]string, 0)
-	for i := 0; i < len(strings.Split(options.Out, string(filepath.Separator)))+1; i++ {
+	for i := 0; i < len(strings.Split(req.GetSettings().GetCodegen().GetOut(), string(filepath.Separator))); i++ {
 		depth = append(depth, "..")
 	}
 	toRootPath := filepath.Join(depth...)
@@ -108,11 +108,11 @@ func serverFiles(req *plugin.GenerateRequest, options *opts.Options, enums []Enu
 			return nil
 		}
 
-		if strings.HasSuffix(newPath, "litestream.go") && !(def.Database() == "sqlite" && def.Litestream) {
+		if strings.HasSuffix(newPath, "litestream.go") && !def.Litestream {
 			return nil
 		}
 
-		if (strings.HasSuffix(newPath, "litefs.go") || strings.HasSuffix(newPath, "forward.go")) && !(def.Database() == "sqlite" && def.LiteFS) {
+		if (strings.HasSuffix(newPath, "litefs.go") || strings.HasSuffix(newPath, "forward.go")) && !def.LiteFS {
 			return nil
 		}
 
