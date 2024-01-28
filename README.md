@@ -9,15 +9,15 @@ version: '2'
 plugins:
 - name: go-server
   wasm:
-    url: https://github.com/walterwanderley/sqlc-gen-go-server/releases/download/v0.0.3/sqlc-gen-go-server.wasm
-    sha256: "aa95af079ae66d9ab58bbdb0936a9bd3d5a7d79a2d35c40b5a15ec1fb38986a4"
+    url: https://github.com/walterwanderley/sqlc-gen-go-server/releases/download/v0.0.4/sqlc-gen-go-server.wasm
+    sha256: "0c6fb4934be9b79f396256c4984c42f39d607817e11ec8dcdc10da3595395a58"
 sql:
 - schema: schema.sql
   queries: query.sql
   engine: postgresql
   codegen:
   - plugin: go-server
-    out: db
+    out: internal/db
     options:
       package: db
       sql_package: pgx/v5
@@ -94,15 +94,15 @@ version: 2
 plugins:
 - name: go-server
   wasm:
-    url: https://github.com/walterwanderley/sqlc-gen-go-server/releases/download/v0.0.3/sqlc-gen-go-server.wasm
-    sha256: "aa95af079ae66d9ab58bbdb0936a9bd3d5a7d79a2d35c40b5a15ec1fb38986a4"
+    url: https://github.com/walterwanderley/sqlc-gen-go-server/releases/download/v0.0.4/sqlc-gen-go-server.wasm
+    sha256: "0c6fb4934be9b79f396256c4984c42f39d607817e11ec8dcdc10da3595395a58"
 sql:
 - schema: "query.sql"
   queries: "query.sql"
   engine: "postgresql"
   codegen:
   - plugin: go-server
-    out: "db"
+    out: "internal/db"
     options:
       server_type: "grpc" # The server type: grpc or connect.      
       module: "my-module" # The module name for the generated go.mod.
