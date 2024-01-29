@@ -19,6 +19,7 @@ import (
 	"github.com/walterwanderley/sqlc-grpc/converter"
 	"github.com/walterwanderley/sqlc-grpc/metadata"
 	grpctemplates "github.com/walterwanderley/sqlc-grpc/templates"
+	httptemplates "github.com/walterwanderley/sqlc-http/templates"
 )
 
 func serverFiles(req *plugin.GenerateRequest, options *opts.Options, enums []Enum, structs []Struct, queries []Query) ([]*plugin.File, error) {
@@ -28,14 +29,17 @@ func serverFiles(req *plugin.GenerateRequest, options *opts.Options, enums []Enu
 	)
 
 	switch options.ServerType {
-	case "", "grpc": // the default server type
+	case "grpc":
 		tmplFS = grpctemplates.Files
 		tmplFuncs = grpctemplates.Funcs
 	case "connect":
 		tmplFS = connecttemplates.Files
 		tmplFuncs = connecttemplates.Funcs
+	case "", "http": // the default server type
+		tmplFS = httptemplates.Files
+		tmplFuncs = httptemplates.Funcs
 	default:
-		return nil, fmt.Errorf("invalid server_type %q. Choose 'connect' or 'grpc'", options.ServerType)
+		return nil, fmt.Errorf("invalid server_type %q. Choose 'connect', 'grpc' or 'http'", options.ServerType)
 	}
 	def := toServerDefinition(req, options, enums, structs, queries)
 	if err := def.Validate(); err != nil {
@@ -77,7 +81,8 @@ func serverFiles(req *plugin.GenerateRequest, options *opts.Options, enums []Enu
 			return nil
 		}
 
-		if strings.HasSuffix(newPath, "adapters.go") || strings.HasSuffix(newPath, "service.go") || strings.HasSuffix(newPath, "service.factory.go") {
+		if strings.HasSuffix(newPath, "adapters.go") || strings.HasSuffix(newPath, "service.go") ||
+			strings.HasSuffix(newPath, "service.factory.go") || strings.HasSuffix(newPath, "routes.go") {
 			if options.Append && strings.HasSuffix(newPath, "service.factory.go") {
 				return nil
 			}
