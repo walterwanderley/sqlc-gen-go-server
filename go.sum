@@ -16,12 +16,12 @@ github.com/kisielk/errcheck v1.5.0/go.mod h1:pFxgyoBC7bSaBwPgfKdkLd5X25qrDl4LWUI
 github.com/kisielk/gotool v1.0.0/go.mod h1:XhKaO+MFFWcvkIS/tQcRk01m1F5IRFswLeQ+oQHNcck=
 github.com/sqlc-dev/plugin-sdk-go v1.23.0 h1:iSeJhnXPlbDXlbzUEebw/DxsGzE9rdDJArl8Hvt0RMM=
 github.com/sqlc-dev/plugin-sdk-go v1.23.0/go.mod h1:I1r4THOfyETD+LI2gogN2LX8wCjwUZrgy/NU4In3llA=
-github.com/walterwanderley/sqlc-connect v0.3.1 h1:dTmRU3lukwFBZqp05i8UCO9tJlUoPn87ZH0KvATkEEc=
-github.com/walterwanderley/sqlc-connect v0.3.1/go.mod h1:ElxeTpFoj5xhCLW6lMSy9akuhTW7zpygx8N98bGGj6g=
-github.com/walterwanderley/sqlc-grpc v0.19.2 h1:ytEGN1QQ3y/FrCe1CYvqiNnCJhua7c/QJw07hJuaFs8=
-github.com/walterwanderley/sqlc-grpc v0.19.2/go.mod h1:bfMjDJUNyUkk3+OM/we8OKDYPVodms+ekOgHvV2hXFY=
-github.com/walterwanderley/sqlc-http v0.0.2 h1:N2HIPQoXmuV2Y6P2k+d3tAnTl/J9uid6hQgkld0Roxg=
-github.com/walterwanderley/sqlc-http v0.0.2/go.mod h1:NZDNp753Cp6NaGcdJFBCZ3Y28ZqKm8TuYcNbWqBhMtU=
+github.com/walterwanderley/sqlc-connect v0.3.3 h1:5bELXGS1lUUUFNVDiW1LgC2g4x+lBV3Sj5a4wV/QBjE=
+github.com/walterwanderley/sqlc-connect v0.3.3/go.mod h1:vosmBJhzJv5ySuFzijWbp24+ddtD8JcAaelxeFzjorA=
+github.com/walterwanderley/sqlc-grpc v0.19.4 h1:UY4Q4SpMFGTAZ6PmWabnLEUa14rfYZja1bX31lXdLlI=
+github.com/walterwanderley/sqlc-grpc v0.19.4/go.mod h1:bfMjDJUNyUkk3+OM/we8OKDYPVodms+ekOgHvV2hXFY=
+github.com/walterwanderley/sqlc-http v0.0.3 h1:wK2VmDYblY39deO4tO5tRLAZf0A33cjxT4YK0KcWAbw=
+github.com/walterwanderley/sqlc-http v0.0.3/go.mod h1:VXP/qWJU+NPuD8+7C3zPwd88WNmAmDrKvaXkYZS+mQw=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
@@ -63,3 +63,7 @@ google.golang.org/protobuf v1.26.0-rc.1/go.mod h1:jlhhOSvTdKEhbULTjvd4ARK9grFBp0
 google.golang.org/protobuf v1.26.0/go.mod h1:9q0QmTI4eRPtz6boOQmLYwt+qCgq0jsYwAQnmE0givc=
 google.golang.org/protobuf v1.32.0 h1:pPC6BG5ex8PDFnkbrGU3EixyhKcQ2aDuBS36lqK/C7I=
 google.golang.org/protobuf v1.32.0/go.mod h1:c6P6GXX6sHbq/GpV6MGZEdwhWPcYBgnhAHhKbcUYpos=
+gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=
+gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
+gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
+gopkg.in/yaml.v3 v3.0.1/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=

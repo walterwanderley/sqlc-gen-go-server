@@ -19,6 +19,7 @@ import (
 	"github.com/walterwanderley/sqlc-grpc/converter"
 	"github.com/walterwanderley/sqlc-grpc/metadata"
 	grpctemplates "github.com/walterwanderley/sqlc-grpc/templates"
+	httpmetadata "github.com/walterwanderley/sqlc-http/metadata"
 	httptemplates "github.com/walterwanderley/sqlc-http/templates"
 )
 
@@ -92,6 +93,18 @@ func serverFiles(req *plugin.GenerateRequest, options *opts.Options, enums []Enu
 			}
 			files = append(files, &plugin.File{
 				Name:     newPath,
+				Contents: content,
+			})
+			return nil
+		}
+
+		if strings.HasSuffix(newPath, "openapi.yml") {
+			content, err := execServerTemplate(tmplFS, tmplFuncs, path, &httpmetadata.EditableOpenApi{Definition: def}, false)
+			if err != nil {
+				return err
+			}
+			files = append(files, &plugin.File{
+				Name:     filepath.Join(toRootPath, newPath),
 				Contents: content,
 			})
 			return nil
@@ -257,9 +270,13 @@ func toServerDefinition(req *plugin.GenerateRequest, options *opts.Options, enum
 			retFields = append(retFields, &retField)
 		} else if query.Cmd == ":execresult" {
 			hasExecResult = true
+			typ := "sql.Result"
+			if strings.HasPrefix(options.SqlPackage, "pgx") {
+				typ = "pgconn.CommandTag"
+			}
 			retFields = append(retFields, &metadata.Field{
 				Name: "value",
-				Type: "sql.Result",
+				Type: typ,
 			})
 		}
 		retMessage := metadata.Message{
@@ -274,7 +291,11 @@ func toServerDefinition(req *plugin.GenerateRequest, options *opts.Options, enum
 			}
 			out.WriteString(query.Ret.Type())
 		} else if query.Cmd == ":execresult" {
-			out.WriteString("sql.Result")
+			typ := "sql.Result"
+			if strings.HasPrefix(options.SqlPackage, "pgx") {
+				typ = "pgconn.CommandTag"
+			}
+			out.WriteString(typ)
 		}
 		httpSpecs := make([]metadata.HttpSpec, 0)
 		for _, doc := range query.Comments {
