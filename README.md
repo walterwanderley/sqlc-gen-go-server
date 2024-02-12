@@ -10,7 +10,7 @@ plugins:
 - name: go-server
   wasm:
     url: https://github.com/walterwanderley/sqlc-gen-go-server/releases/download/v0.0.9/sqlc-gen-go-server.wasm
-    sha256: "sha256=788b0e5d63719c993df1aeb920c2cd2edc37114021223b14375abdc360ed6f43"
+    sha256: "788b0e5d63719c993df1aeb920c2cd2edc37114021223b14375abdc360ed6f43"
 sql:
 - schema: schema.sql
   queries: query.sql
