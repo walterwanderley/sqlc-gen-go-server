@@ -298,6 +298,7 @@ func toServerDefinition(req *plugin.GenerateRequest, options *opts.Options, enum
 			out.WriteString(typ)
 		}
 		httpSpecs := make([]metadata.HttpSpec, 0)
+		customSpecs := make(map[string][]string)
 		for _, doc := range query.Comments {
 			doc = strings.TrimSpace(doc)
 			if strings.HasPrefix(doc, "http: ") {
@@ -315,16 +316,23 @@ func toServerDefinition(req *plugin.GenerateRequest, options *opts.Options, enum
 					Method: httpMethod,
 					Path:   httpPath,
 				})
+			} else {
+				k, v, ok := strings.Cut(doc, ":")
+				if !ok {
+					continue
+				}
+				customSpecs[k] = append(customSpecs[k], v)
 			}
 		}
 		services = append(services, &metadata.Service{
-			Name:       query.MethodName,
-			Sql:        query.SQL,
-			Messages:   messages,
-			Output:     out.String(),
-			InputNames: inputNames,
-			InputTypes: inputTypes,
-			HttpSpecs:  httpSpecs,
+			Name:        query.MethodName,
+			Sql:         query.SQL,
+			Messages:    messages,
+			Output:      out.String(),
+			InputNames:  inputNames,
+			InputTypes:  inputTypes,
+			HttpSpecs:   httpSpecs,
+			CustomSpecs: customSpecs,
 		})
 	}
 	sort.SliceStable(services, func(i, j int) bool {

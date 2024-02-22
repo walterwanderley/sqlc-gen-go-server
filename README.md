@@ -9,8 +9,8 @@ version: '2'
 plugins:
 - name: go-server
   wasm:
-    url: https://github.com/walterwanderley/sqlc-gen-go-server/releases/download/v0.0.9/sqlc-gen-go-server.wasm
-    sha256: "788b0e5d63719c993df1aeb920c2cd2edc37114021223b14375abdc360ed6f43"
+    url: https://github.com/walterwanderley/sqlc-gen-go-server/releases/download/v0.1.0/sqlc-gen-go-server.wasm
+    sha256: "bdd6fd13a062f9319c4ab13cbdc359c0275b531b8698be51ff843904bf919a5c"
 sql:
 - schema: schema.sql
   queries: query.sql
@@ -123,8 +123,8 @@ version: 2
 plugins:
 - name: go-server
   wasm:
-    url: https://github.com/walterwanderley/sqlc-gen-go-server/releases/download/v0.0.9/sqlc-gen-go-server.wasm
-    sha256: "788b0e5d63719c993df1aeb920c2cd2edc37114021223b14375abdc360ed6f43"
+    url: https://github.com/walterwanderley/sqlc-gen-go-server/releases/download/v0.1.0/sqlc-gen-go-server.wasm
+    sha256: "bdd6fd13a062f9319c4ab13cbdc359c0275b531b8698be51ff843904bf919a5c"
 sql:
 - schema: "query.sql"
   queries: "query.sql"
