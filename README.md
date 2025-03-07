@@ -2,6 +2,14 @@
 
 [Sqlc plugin](https://sqlc.dev) to generate [gRPC](https://grpc.io/), [Connect](https://connectrpc.com/) or [HTTP](https://pkg.go.dev/net/http) server from SQL.
 
+## Requirements
+
+To write files outside the plugin's output path, make shure you are using sqlc version 1.25.0
+
+```sh
+go install github.com/sqlc-dev/sqlc/cmd/sqlc@v1.25.0
+```
+
 ## Usage
 
 ```yaml
